@@ -1,0 +1,19 @@
+---
+- name: Add Epel Repository
+  yum_repository:
+    name: epel
+    description: EPEL YUM repo
+    baseurl: https://download.fedoraproject.org/pub/epel/$releasever/$basearch/
+    state: "{{ extensions_state }}"
+
+- name: Install package dependencies
+  yum:
+    name:
+      - gcc
+      - python36
+      - python36-devel
+      - python36-pip
+      - openssl-devel
+    state: "{{ extensions_state }}"
+    disable_gpg_check: yes
+    update_cache: yes
