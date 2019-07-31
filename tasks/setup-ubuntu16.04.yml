@@ -1,0 +1,30 @@
+---
+- name: Install package dependencies for Ubuntu
+  become: yes
+  apt:
+    name:
+      - gcc
+      - python3
+      - python3-dev
+      - python3-pip
+      - libssl-dev
+    state: "{{ extensions_state }}"
+    update_cache: yes
+
+- name: Install setuptools for Ubuntu <= 16.04
+  become: yes
+  pip:
+    executable: pip3
+    name:
+      - setuptools
+    state: "{{ extensions_state }}"
+
+- name: Install otcextensions and openstacksdk for Ubuntu <= 16.04
+  pip:
+    executable: pip3
+    name:
+      - otcextensions
+      - python-openstackclient
+    state: "{{ extensions_state }}"
+    extra_args: --user
+

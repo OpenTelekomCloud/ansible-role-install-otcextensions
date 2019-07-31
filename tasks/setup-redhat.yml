@@ -1,12 +1,14 @@
 ---
 - name: Add Epel Repository
+  become: yes
   yum_repository:
     name: epel
     description: EPEL YUM repo
     baseurl: https://download.fedoraproject.org/pub/epel/$releasever/$basearch/
     state: "{{ extensions_state }}"
 
-- name: Install package dependencies
+- name: Install package dependencies for RedHat / CentOS
+  become: yes
   yum:
     name:
       - gcc
@@ -17,3 +19,14 @@
     state: "{{ extensions_state }}"
     disable_gpg_check: yes
     update_cache: yes
+
+
+- name: Install otcextensions and openstacksdk for RedHat / CentOS
+  become: yes
+  pip:
+    executable: pip3
+    name:
+      - otcextensions
+      - python-openstackclient
+    state: "{{ extensions_state }}"
+
