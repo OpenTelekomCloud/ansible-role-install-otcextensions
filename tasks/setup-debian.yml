@@ -11,7 +11,11 @@
     state: "{{ extensions_state }}"
     update_cache: yes
 
-- name: Upgrade pip
-  become: yes
-  command: pip3 install --upgrade pip
-
+- name: Install otcextensions and openstacksdk for Ubuntu <= 16.04
+  pip:
+    executable: pip3
+    name:
+      - otcextensions
+      - python-openstackclient
+    state: "{{ extensions_state }}"
+    extra_args: --user

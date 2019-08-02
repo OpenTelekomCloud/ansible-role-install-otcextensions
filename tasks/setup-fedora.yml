@@ -1,0 +1,21 @@
+---
+- name: Install package dependencies for Fedora
+  become: yes
+  package: 
+    state: "{{ extensions_state }}"
+    name: "{{ item }}"
+  with_items:
+    - gcc
+    - python3
+    - python3-devel
+    - python3-pip
+    - openssl-devel
+
+- name: Install otcextensions and openstacksdk for RedHat / CentOS
+  become: yes
+  pip:
+    executable: pip3
+    name:
+      - otcextensions
+      - python-openstackclient
+    state: "{{ extensions_state }}"
