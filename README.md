@@ -20,8 +20,10 @@ The following example shows how to enable the role for a specific host (e.g. loc
     user@server:~$ cat roles/ansible-role-otcextensions/tests/test.yml
     ---
     - hosts: localhost
-      remote_user: root
       roles:
-        - ansible-role-install-otcextensions
+        - role: ansible-role-otcextensions
+          vars:
+            extensions_state: present
+
 
 **Important: The role is not yet published on Ansible Galaxy and needs to be downloaded locally.**
