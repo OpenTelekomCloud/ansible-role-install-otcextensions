@@ -20,3 +20,4 @@
       - otcextensions
       - python-openstackclient
     state: "{{ extensions_state }}"
+    extra_args: --user

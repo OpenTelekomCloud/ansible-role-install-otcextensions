@@ -10,14 +10,26 @@
       - libssl-dev
     state: "{{ extensions_state }}"
     update_cache: yes
+  when: extensions_state == "present"
 
-- name: Install setuptools for Ubuntu <= 16.04
+- name: Update pip
   become: yes
   pip:
     executable: pip3
     name:
+      - pip
+    state: latest
+  when: extensions_state == "present"
+
+
+- name: Install setuptools for Ubuntu <= 16.04
+  pip:
+    executable: pip3
+    name:
       - setuptools
-    state: "{{ extensions_state }}"
+    extra_args: --user
+  when: extensions_state == "present"
+
 
 - name: Install otcextensions and openstacksdk for Ubuntu <= 16.04
   pip:

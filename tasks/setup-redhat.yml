@@ -22,11 +22,11 @@
 
 
 - name: Install otcextensions and openstacksdk for RedHat / CentOS
-  become: yes
   pip:
     executable: pip3
     name:
       - otcextensions
       - python-openstackclient
     state: "{{ extensions_state }}"
+    extra_args: --user
 
