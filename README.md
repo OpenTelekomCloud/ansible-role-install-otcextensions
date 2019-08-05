@@ -23,3 +23,5 @@ The following example shows how to enable the role for a specific host (e.g. loc
       remote_user: root
       roles:
         - ansible-role-install-otcextensions
+
+**Important: The role is not yet published on Ansible Galaxy and needs to be downloaded locally.**
