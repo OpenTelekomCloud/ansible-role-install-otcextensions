@@ -1,17 +1,20 @@
 ---
-# extensions_state == present
-- block:
-    # Installation of OS dependencies
-    - name: Include Tasks for CentOS and RedHat
+# Include Installation tasks for specific OS
+    - name: Include Tasks for CentOS or RedHat
       include_tasks: setup-redhat.yml
       when: 
         - ansible_os_family == "RedHat"
         - ansible_distribution != "Fedora"
 
-    - name: Include tasks for Debian and Ubuntu
+    - name: Include tasks for Debian
       include_tasks: setup-debian.yml
       when:
-        - ansible_distribution == "Debian" or ansible_distribution == "Ubuntu" and ansible_distribution_major_version > "16.04"
+        - ansible_distribution == "Debian"
+
+    - name: Include tasks for Ubuntu
+      include_tasks: setup-ubuntu.yml
+      when:
+        - ansible_distribution == "Ubuntu" and ansible_distribution_major_version > "16.04"
 
     - name: Include tasks for Ubuntu <= 16.04
       include_tasks: setup-ubuntu16.04.yml
@@ -20,6 +23,4 @@
     - name: Include tasks for Fedora
       include_tasks: setup-fedora.yml
       when: ansible_distribution == "Fedora"
-
-  when: extensions_state == "present"
 

@@ -8,11 +8,12 @@
       - python3-dev
       - python3-pip
       - libssl-dev
+      - python3-setuptools
     state: "{{ extensions_state }}"
     update_cache: yes
   when: extensions_state == "present"
 
-- name: Install otcextensions and openstacksdk for Debian
+- name: Install otcextensions and openstacksdk for Ubuntu
   pip:
     executable: pip3
     name:

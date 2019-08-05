@@ -10,8 +10,9 @@
     - python3-devel
     - python3-pip
     - openssl-devel
+  when: extensions_state == "present" 
 
-- name: Install otcextensions and openstacksdk for RedHat / CentOS
+- name: Install / Remove otcextensions and openstacksdk for Fedora
   become: yes
   pip:
     executable: pip3
